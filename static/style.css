@@ -22,7 +22,35 @@ header{
   	display: flex;
   	align-items: center;
   	justify-content: space-between;
+    a{text-decoration: none; color: white;}
     .dm{display: flex; gap: 1em}
     button{font-family: 'Poppins'; padding: 0.5em 1em; border: none; border-radius: 2em;}
     button:hover{cursor: pointer;}
+}
+
+
+
+
+/* LOGIN */
+.card{
+    padding: 1em;
+    margin-top: 30vh;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: solid 1px var(--dark-blue);
+    border-radius: 1em;
+    background-color: rgb(228, 228, 228);
+	font-family: 'Poppins';
+  	form{
+        display: flex; flex-direction: column; gap: 0.4em;
+        input{padding: 0.5em 1em; font-family: 'Poppins'; border: none; border-radius: 1em;}
+        button{font-family: 'Poppins';background-color: var(--dark-blue); color: white; margin-top: 1em; padding: 0.5em 1em; border: none; border-radius: 2em;}
+        button:hover{cursor: pointer;}
+    }
+        error{text-align: center;}
 }
