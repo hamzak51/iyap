@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root{
+    --dark-blue: #1967D2;
+    --light-blur: #42A5F5;
+}
+
+body{
+    font-family: 'Poppins';
+    margin: 0;
+}
+
+header{
+  	padding: 1em 2em;
+  	background-color: var(--dark-blue);
+  	color: white;
+  	display: flex;
+  	flex-direction: column;
+}
+
+.content{
+  	display: flex;
+  	align-items: center;
+  	justify-content: space-between;
+    .dm{display: flex; gap: 1em}
+    button{font-family: 'Poppins'; padding: 0.5em 1em; border: none; border-radius: 2em;}
+    button:hover{cursor: pointer;}
+}
