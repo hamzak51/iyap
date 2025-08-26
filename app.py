@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session   # flask modules
+from flask import Flask, render_template, request, session, redirect   # flask modules
 
 import requests
 from datetime import datetime   # python modules
@@ -31,12 +31,14 @@ def blog():
     return render_template("blog.html")
 
 
+
+
 @app.route("/dashboard", methods=['POST', 'GET'])
 def dashboard():
     #Check if admin logged in
     # if ('admin' in session and session['admin'] == admin_user):
     if 'admin' in session:
-        return render_template("dashboard.html")
+        return render_template("dashboard.html", role="admin")
     #if loggen_in:
     if request.method=='POST':
 
@@ -50,13 +52,22 @@ def dashboard():
 
         if (admin_user==username and admin_pass==password):
             session['admin'] = username
-            return render_template("dashboard.html") 
+            return render_template("dashboard.html", role="admin") 
     #show dashboard
         else:
             return render_template("login.html", error="Only admins are allowed to access dashboard")
     #else:
     #show login form
     return render_template("login.html")
+
+
+@app.route("/logout")
+def logout():
+    session.pop('admin')
+    return redirect("/dashboard")
+
+
+
 
 
 # if __name__ == "__main__":
