@@ -8,7 +8,14 @@
 body{
     font-family: 'Poppins';
     margin: 0;
+    background-color: #F5F5F5;
 }
+
+a{text-decoration: none; color: black;}
+a:hover{cursor: pointer;}
+button{font-family: 'Poppins'; padding: 0.5em 1em; border: none; border-radius: 2em; background-color: rgb(231, 231, 231); transition: ease 0.3s;}
+button:hover{cursor: pointer; background-color: rgb(255, 255, 255);}
+input{padding: 0.5em 1em; font-family: 'Poppins'; border: none; border-radius: 1em;}
 
 header{
   	padding: 1em 2em;
@@ -25,9 +32,11 @@ header{
     a{text-decoration: none; color: white;}
     .dm{display: flex; gap: 1em}
     button{font-family: 'Poppins'; padding: 0.5em 1em; border: none; border-radius: 2em;}
-    button:hover{cursor: pointer;}
 }
 
+main{
+    margin: 2em 4em;
+}
 
 
 
@@ -53,4 +62,16 @@ header{
         button:hover{cursor: pointer;}
     }
         error{text-align: center;}
+}
+
+
+/* addpost */
+.addpost{
+    form{
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        button{background-color: var(--light-blur);}
+        button:hover{background-color: var(--dark-blue);}
+    }
 }

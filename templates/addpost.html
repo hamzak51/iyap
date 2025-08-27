@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block addpost_body %}
+
+<div class="addpost">
+    <h1>Add a new blog</h1>
+    <form action="" method="post">
+        <label for="title">Title</label>
+        <input type="text" placeholder="Write a Title" name="title_html" id="title">
+        <label for="tagline">Tagline</label>
+        <input type="text" placeholder="Write a tagline" name="tagline_html" id="tagline">
+        <label>Content</label>
+        {{ ckeditor.create() }}
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+{% endblock %}
