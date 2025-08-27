@@ -71,7 +71,7 @@ main{
         display: flex;
         flex-direction: column;
         gap: 1em;
-        button{background-color: var(--light-blur);}
-        button:hover{background-color: var(--dark-blue);}
+        button{background-color: var(--dark-blue);}
+        button:hover{background-color: var(--light-blur);}
     }
 }

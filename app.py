@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect   # flask modules
+from flask import Flask, render_template, request, session, redirect, url_for   # flask modules
 from flask_ckeditor import CKEditor
 
 import requests
@@ -16,7 +16,7 @@ app = Flask(__name__)
 
 ckeditor = CKEditor(app)
 app.secret_key = os.getenv("secret_key")
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:password@localhost/yap"
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root@localhost/yap"
 db = SQLAlchemy(app)
 
 
@@ -26,7 +26,7 @@ class blogs(db.Model):
     tagline = db.Column(db.String, nullable=True)
     date = db.Column(db.DateTime, default=datetime.utcnow)
     content = db.Column(db.String, nullable=False)
-    picture_path = db.Column(db.String, nullable=False)
+    picture_path = db.Column(db.String, nullable=True)
 
 
 @app.route("/")
@@ -66,16 +66,35 @@ def logout():
 
 
 
-@app.route("/newpost")
+@app.route("/newpost", methods=['POST', 'GET'])
 def addpost():
     #check if admin is logged in
     # yes: show addpostpage
     if 'admin' in session:
+
+        if request.method=='POST':
+            title = request.form.get("title")
+            tagline = request.form.get("tagline")
+            content = request.form.get("ckeditor")
+            picture_path = request.form.get("img")
+
+            new_post = blogs(title=title, tagline=tagline, content=content, picture_path=picture_path)
+            db.session.add(new_post)
+            db.session.commit()
+
+            return redirect(url_for("post", post_id=new_post.sno))
+
         return render_template("addpost.html", role="admin")
     # else: redirect to dashboard endpoint
     else:
         return redirect("/dashboard")
 
+
+
+@app.route("/post/<int:post_id>", methods=['GET', 'POST'])
+def post(post_id):
+    post = blogs.query.get(post_id)
+    return render_template("post.html", post=post)
 
 
 
