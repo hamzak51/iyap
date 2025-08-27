@@ -29,17 +29,24 @@ class blogs(db.Model):
     picture_path = db.Column(db.String, nullable=True)
 
 
+
+def get_posts():
+    all_blogs = db.session.execute(db.select(blogs).order_by(blogs.sno)).scalars()
+    return all_blogs
+
+
+
 @app.route("/")
 def blog():
     return render_template("blog.html")
 
 
 
-
 @app.route("/dashboard", methods=['POST', 'GET'])
 def dashboard():
     if 'admin' in session:
-        return render_template("dashboard.html", role="admin")
+        all_blogs=get_posts()
+        return render_template("dashboard.html", role="admin", posts=all_blogs)
 
     if request.method=='POST':
         # getting values from the form
@@ -52,11 +59,13 @@ def dashboard():
 
         if (admin_user==username and admin_pass==password):
             session['admin'] = username
-            return render_template("dashboard.html", role="admin") 
+            all_blogs=get_posts()
+            return render_template("dashboard.html", role="admin", posts=all_blogs) 
         else:
             return render_template("login.html", error="Only admins are allowed to access dashboard")
 
     return render_template("login.html")
+
 
 
 @app.route("/logout")
@@ -68,8 +77,7 @@ def logout():
 
 @app.route("/newpost", methods=['POST', 'GET'])
 def addpost():
-    #check if admin is logged in
-    # yes: show addpostpage
+
     if 'admin' in session:
 
         if request.method=='POST':
@@ -83,9 +91,8 @@ def addpost():
             db.session.commit()
 
             return redirect(url_for("post", post_id=new_post.sno))
-
         return render_template("addpost.html", role="admin")
-    # else: redirect to dashboard endpoint
+
     else:
         return redirect("/dashboard")
 
