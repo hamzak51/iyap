@@ -104,6 +104,26 @@ def post(post_id):
     return render_template("post.html", post=post)
 
 
+@app.route("/edit/<int:post_id>", methods=['GET', 'POST'])
+def edit_post(post_id):
+
+    if 'admin' in session:
+        post = blogs.query.get(post_id)
+
+        if request.method=='POST':
+                post.title = request.form.get("title")
+                post.tagline = request.form.get("tagline")
+                post.content = request.form.get("ckeditor")
+
+                db.session.commit()
+
+                return redirect(url_for('post', post_id=post.sno))
+
+        return render_template('editpost.html', post=post)
+
+    else:
+        return redirect("/dashboard")
+
 
 
 # if __name__ == "__main__":
