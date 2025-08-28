@@ -85,7 +85,12 @@ def addpost():
             title = request.form.get("title")
             tagline = request.form.get("tagline")
             content = request.form.get("ckeditor")
-            picture_path = request.form.get("img")
+
+            img = request.files["img"]      # get image uploaded image details
+            img_path = os.path.join('static/images', img.filename)  # define save path
+            img.save(img_path)  # save image to path(static/images)
+
+            picture_path=f"/static/images/{img.filename}"    # define a web path to display in jinja
 
             new_post = blogs(title=title, tagline=tagline, content=content, picture_path=picture_path)
             db.session.add(new_post)
