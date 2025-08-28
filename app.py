@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect, url_for   # flask modules
+from flask import Flask, render_template, request, session, redirect, url_for, flash   # flask modules
 from flask_ckeditor import CKEditor
 
 import requests
@@ -29,19 +29,19 @@ class blogs(db.Model):
     picture_path = db.Column(db.String, nullable=True)
 
 
-
+# GET (fetching all items from database)
 def get_posts():
     all_blogs = db.session.execute(db.select(blogs).order_by(blogs.sno)).scalars()
     return all_blogs
 
 
-
+# home page (publicly visible)
 @app.route("/")
 def blog():
     return render_template("blog.html")
 
 
-
+# dashboard (visible only to admin-hamza)
 @app.route("/dashboard", methods=['POST', 'GET'])
 def dashboard():
     if 'admin' in session:
@@ -67,7 +67,7 @@ def dashboard():
     return render_template("login.html")
 
 
-
+# logout from dashboard
 @app.route("/logout")
 def logout():
     session.pop('admin')
@@ -75,6 +75,7 @@ def logout():
 
 
 
+# POST (adding items to database)
 @app.route("/newpost", methods=['POST', 'GET'])
 def addpost():
 
@@ -97,22 +98,23 @@ def addpost():
         return redirect("/dashboard")
 
 
-
+# GET by id
 @app.route("/post/<int:post_id>", methods=['GET', 'POST'])
 def post(post_id):
-    post = blogs.query.get(post_id)
+    post = blogs.query.get(post_id)     # saves entire row data of that id in variable(post)
     return render_template("post.html", post=post)
 
 
+# PUT (edit existing data in database)
 @app.route("/edit/<int:post_id>", methods=['GET', 'POST'])
 def edit_post(post_id):
 
     if 'admin' in session:
         post = blogs.query.get(post_id)
 
-        if request.method=='POST':
-                post.title = request.form.get("title")
-                post.tagline = request.form.get("tagline")
+        if request.method=='POST':      # agar iss endpoint me request maari hai tw
+                post.title = request.form.get("title")      # post.title ko form ke data se replace krdo
+                post.tagline = request.form.get("tagline")  
                 post.content = request.form.get("ckeditor")
 
                 db.session.commit()
@@ -123,6 +125,24 @@ def edit_post(post_id):
 
     else:
         return redirect("/dashboard")
+
+
+
+# DELETE (delete data from database)
+@app.route("/delete/<int:post_id>", methods=['GET', 'POST'])
+def delete_post(post_id):
+
+    if 'admin' in session:
+        post = blogs.query.get(post_id)
+
+        db.session.delete(post)
+        db.session.commit()
+            # flash('blog deleted')
+        flashmsg="post deleted"
+        return redirect("/dashboard")
+    else:
+        return redirect("/dashboard")
+
 
 
 

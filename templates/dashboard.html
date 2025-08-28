@@ -4,6 +4,7 @@
 
 <h1>Dashboard</h1>
 <a href="/newpost"><button>+ New Blog</button></a>
+<h3>{{flashmsg}}</h3>
 
 <div class="spacer" style="min-height: 2em;"></div>
 
@@ -19,7 +20,7 @@
         <div class="actions">
             <a href="{{ url_for('post', post_id=post.sno) }}"><button>view</button></a>
             <a href="{{ url_for('edit_post', post_id=post.sno) }}"><button>update</button></a>
-            <a href=""><button>delete</button></a>
+            <a href="{{ url_for('delete_post', post_id=post.sno) }}"><button>delete</button></a>
         </div>
     </div>
 
