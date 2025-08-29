@@ -12,7 +12,7 @@ body{
 }
 
 a{text-decoration: none; color: black;}
-a:hover{cursor: pointer;}
+a:hover{cursor: pointer; opacity: 85%;}
 button{font-family: 'Poppins'; padding: 0.5em 1em; border: none; border-radius: 2em; background-color: rgb(231, 231, 231); transition: ease 0.5s;}
 button:hover{cursor: pointer; background-color: rgb(255, 255, 255);}
 input{padding: 0.5em 1em; font-family: 'Poppins'; border: none; border-radius: 1em;}
@@ -23,6 +23,7 @@ header{
   	color: white;
   	display: flex;
   	flex-direction: column;
+    a:hover{opacity: 130%;}
 }
 
 .content{
@@ -95,15 +96,47 @@ main{
 
 
 
-@media (width < 430px){
-    .content{
-        /* justify-content: center; */
+
+/* homepage */
+.all_posts{
+    display: flex; flex-wrap: wrap;
+    .posthome{
+        /* display: flex;   */
+        /* flex: 1 1 calc(33.333% - 1em); */
+        flex: 0 0 33.333%;
+        /* border: solid 1px black; */
+        img{object-fit: contain; max-width: 100%; border-radius: 10px}
+        p{padding-right: 1rem; padding-left: 1rem; font-size: 14px;}
+        a:hover{cursor: pointer; opacity: 80%;}
     }
+}
+
+
+/* footer */
+footer{
+    padding: 4em 2em;
+  	background-color: rgb(20, 20, 20);
+  	color: whitesmoke; font-size: 12px;
+    a{color: whitesmoke;}
+    .credits{display: flex; align-items: center; justify-content: space-between; margin-bottom: 1em;}
+    p{text-align: center;}
+}
+
+
+
+@media (width < 430px){
+
+    main{margin: 2em 2em;}
 
     /* dashboard */
     .single_blog{
         flex-direction: column; align-items: flex-start;
         .actions{gap: 0.2em}
+    }
+
+    .all_posts{
+        flex-direction: column;
+
     }
 
 }

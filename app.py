@@ -38,7 +38,8 @@ def get_posts():
 # home page (publicly visible)
 @app.route("/")
 def blog():
-    return render_template("blog.html")
+    all_blogs=get_posts()
+    return render_template("blog.html", posts=all_blogs)
 
 
 # dashboard (visible only to admin-hamza)

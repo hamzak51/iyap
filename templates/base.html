@@ -25,9 +25,6 @@
             </div>
 
             <div class="dm">
-                <!-- <form action="/dashboard" method="post">
-                    <button type="submit">Dashboard</button>
-                </form> -->
                 {% if role=="admin" %}
                 <a href="/logout"><button type="submit">Logout</button></a>
                 {% endif %}
@@ -57,7 +54,16 @@
         
     </main>
 
-    <footer></footer>
+    <footer>
+
+        <div class="credits">
+            <p>© 2025 Hamza's blog</p>
+            <a href="https://github.com/hamzak51/iyap">View Source Code</a>
+        </div>
+
+        <p>This blog is made using flask</p>
+        <p>Show love by starring on github😊</p>
+    </footer>
     {{ ckeditor.load(pkg_type="basic") }}
 </body>
 </html>

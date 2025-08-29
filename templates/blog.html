@@ -1,7 +1,21 @@
 {% extends "base.html" %}
 
 {% block blog_body %}
-Hello
+
+<div class="all_posts">
+
+    {% for post in posts %}
+        <div class="posthome">
+            
+            <a href="{{ url_for('post', post_id=post.sno) }}"><img src="{{post.picture_path}}" alt=""></a>
+            <p style="font-weight: 700; font-size: 24px"><a href="{{ url_for('post', post_id=post.sno) }}">{{post.title}}</a></p>
+            <p style="margin-bottom: 0; font-weight: bold;">Hamza</p>
+            <p style="margin-top: 0;">{{post.date}}</p>
+        </div>
+    {% endfor %}
+
+</div>
+
 {% endblock %}
 
 
