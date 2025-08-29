@@ -8,10 +8,10 @@
 body{
     font-family: 'Poppins';
     margin: 0;
-    background-color: #F5F5F5;
+    background-color: white;
 }
 
-a{text-decoration: none; color: black;}
+a{text-decoration: none; color: black; transition: ease 0.5s;}
 a:hover{cursor: pointer; opacity: 85%;}
 button{font-family: 'Poppins'; padding: 0.5em 1em; border: none; border-radius: 2em; background-color: rgb(231, 231, 231); transition: ease 0.5s;}
 button:hover{cursor: pointer; background-color: rgb(255, 255, 255);}
@@ -99,17 +99,29 @@ main{
 
 /* homepage */
 .all_posts{
-    display: flex; flex-wrap: wrap;
+    display: flex; flex-wrap: wrap; gap: 1em;
     .posthome{
         /* display: flex;   */
         /* flex: 1 1 calc(33.333% - 1em); */
-        flex: 0 0 33.333%;
+        flex: 0 0 32%;
         /* border: solid 1px black; */
         img{object-fit: contain; max-width: 100%; border-radius: 10px}
         p{padding-right: 1rem; padding-left: 1rem; font-size: 14px;}
         a:hover{cursor: pointer; opacity: 80%;}
     }
 }
+
+
+/* singlepost */
+.eachpost{
+    margin: 2em 4em;
+    .container{
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        img{width: 60%;}
+    }
+}
+
+
 
 
 /* footer */

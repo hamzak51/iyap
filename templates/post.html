@@ -2,12 +2,20 @@
 
 {% block post_body %}
 
-<h1>data successfully entered into DB. Check DB.</h1>
-{{post.title}}
-{{post.tagline}}
-{{post.content|safe}}
-{{post.date}}
-{{post.picture_path}}
-<img src="{{post.picture_path}}" alt="">
+<div class="eachpost">
+    
+    <p style="font-size: 16px;"><a href="/">⬅ home</a></p>
+
+    <div class="container">
+        <img src="{{post.picture_path}}" alt="">
+        <h1 style="margin-bottom: 0; font-weight: 700;">{{post.title}}</h1>
+        <p style="margin-bottom: 0; font-size: 20px; font-weight: bold;">{{post.tagline}}</p>
+        <p>Hamza Khan <span>.</span><span> {{post.date}}</span></p>
+    </div>
+    <hr>
+
+    <div class="spacer" style="min-height: 2em;"></div>
+    {{post.content|safe}}
+</div>
 
 {% endblock %}
