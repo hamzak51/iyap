@@ -11,11 +11,31 @@ body{
     background-color: white;
 }
 
+
+/* darkmode */
+body.dark-mode{
+    background-color: rgb(20, 20, 20);
+    color: aliceblue;
+
+    a{color: aliceblue;}
+
+    header{box-shadow: -2px 4px 8px rgba(20, 20, 20, 0.3);}
+    .morearticles{
+        .suggested{border: solid 2px gray;}
+    }
+
+    .single_blog{ border: solid 2px gray;}
+}
+
+
+/* globals */
 a{text-decoration: none; color: black; transition: ease 0.5s;}
 a:hover{cursor: pointer; opacity: 85%;}
 button{font-family: 'Poppins'; padding: 0.5em 1em; border: none; border-radius: 2em; background-color: rgb(231, 231, 231); transition: ease 0.5s;}
 button:hover{cursor: pointer; background-color: rgb(255, 255, 255);}
 input{padding: 0.5em 1em; font-family: 'Poppins'; border: none; border-radius: 1em;}
+
+
 
 header{
   	padding: 1em 2em;
@@ -23,6 +43,7 @@ header{
   	color: white;
   	display: flex;
   	flex-direction: column;
+    box-shadow: -2px 4px 8px rgba(0, 0, 0, 0.3);
     a:hover{opacity: 130%;}
 }
 
