@@ -3,6 +3,7 @@ from flask_ckeditor import CKEditor
 
 import requests
 from datetime import datetime   # python modules
+import random
 
 import os
 from dotenv import load_dotenv  # env modules
@@ -33,6 +34,58 @@ class blogs(db.Model):
 def get_posts():
     all_blogs = db.session.execute(db.select(blogs).order_by(blogs.sno)).scalars()
     return all_blogs
+
+
+# fetching post by id
+def get_post_by_id(id):
+    post = blogs.query.get(id)
+    return post
+
+
+# calculating total number of posts
+def total_post_count():
+    all_blogs=get_posts()
+    total_posts = 0
+
+    for posts in all_blogs:
+        total_posts = total_posts + 1
+
+    return total_posts 
+
+
+# create a list of all the ids [1, 2, 3, 6, 7, 9, 10, 11]
+def list_all_ids():
+    all_ids = []
+    all_blogs=get_posts()
+
+    for post in all_blogs:
+        all_ids.append(post.sno)
+
+    return all_ids
+
+
+
+# create randomly chosen list of posts
+def get_suggested_posts(current_id):
+
+    total_posts = total_post_count()
+    id_list = list_all_ids()
+    suggested_posts = []
+
+    counter=0
+
+    while counter<3:
+        last_chosen_id = []
+        chosen_id = random.choice(id_list) 
+        if(chosen_id != current_id and chosen_id != last_chosen_id):
+            last_chosen_id.append(chosen_id) 
+            selected_post = get_post_by_id(chosen_id)
+            suggested_posts.append(selected_post)
+            counter = counter + 1
+    
+    return suggested_posts
+
+
 
 
 # home page (publicly visible)
@@ -107,8 +160,9 @@ def addpost():
 # GET by id
 @app.route("/post/<int:post_id>", methods=['GET', 'POST'])
 def post(post_id):
+    more_articles = get_suggested_posts(post_id)
     post = blogs.query.get(post_id)     # saves entire row data of that id in variable(post)
-    return render_template("post.html", post=post)
+    return render_template("post.html", post=post, more_articles=more_articles)
 
 
 # PUT (edit existing data in database)
