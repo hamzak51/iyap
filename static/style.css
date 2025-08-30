@@ -119,6 +119,18 @@ main{
         display: flex; flex-direction: column; align-items: center; justify-content: center;
         img{width: 60%;}
     }
+
+    .morearticles{
+        display: flex; align-items: center; justify-content: space-between; gap: 1em;
+        .suggested{
+            display: flex; flex-direction: column; justify-content: space-around;
+            height: 475px;
+            padding: 1em;
+            flex: 1;
+            border: solid 1px black; border-radius: 8px;
+            img{object-fit: contain; max-width: 100%; border-radius: 10px}
+        }
+    }
 }
 
 

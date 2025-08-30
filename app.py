@@ -65,6 +65,21 @@ def list_all_ids():
 
 
 
+# check if a variable exists in a list
+def exist_in_list(list, var):
+    exists = False
+    
+    for x in list:
+        if(x==var):
+            exists = True
+            break
+
+    return exists
+
+
+
+
+
 # create randomly chosen list of posts
 def get_suggested_posts(current_id):
 
@@ -74,10 +89,12 @@ def get_suggested_posts(current_id):
 
     counter=0
 
+    last_chosen_id = []
     while counter<3:
-        last_chosen_id = []
-        chosen_id = random.choice(id_list) 
-        if(chosen_id != current_id and chosen_id != last_chosen_id):
+        chosen_id = random.choice(id_list)
+        repeated =  exist_in_list(last_chosen_id, chosen_id)
+
+        if(chosen_id != current_id and repeated==False):
             last_chosen_id.append(chosen_id) 
             selected_post = get_post_by_id(chosen_id)
             suggested_posts.append(selected_post)

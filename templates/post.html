@@ -16,17 +16,24 @@
 
     <div class="spacer" style="min-height: 2em;"></div>
     {{post.content|safe}}
-
+    
+    <div class="spacer" style="min-height: 2em;"></div>
+    
+    
+    <h3 style="color: rgb(44, 44, 44); text-align: center;">More Articles</h3>
     <div class="morearticles">
-
         {% for suggestedpost in more_articles %}
-            <img src="{{suggestedpost.picture_path}}" alt="">
-            <h1 style="margin-bottom: 0; font-weight: 700;">{{suggestedpost.title}}</h1>
-            <p style="margin-bottom: 0; font-size: 20px; font-weight: bold;">{{suggestedpost.tagline}}</p>
-            <p>Hamza Khan <span>.</span><span> {{suggestedpost.date}}</span></p>
+            <div class="suggested">
+                <a href="{{ url_for('post', post_id=suggestedpost.sno) }}"><img src="{{suggestedpost.picture_path}}" alt=""></a>
+                <h1 style="margin-bottom: 0; font-weight: 700;"><a href="{{ url_for('post', post_id=suggestedpost.sno) }}">{{suggestedpost.title}}</a></h1>
+                <p style="margin-bottom: 0; font-size: 20px; font-weight: bold;">{{suggestedpost.tagline}}</p>
+                <p>Hamza Khan <span>.</span><span> {{suggestedpost.date}}</span></p>
+            </div>
         {% endfor %}
-
     </div>
+
+    <div class="spacer" style="min-height: 2em;"></div>
+    
 </div>
 
 {% endblock %}
