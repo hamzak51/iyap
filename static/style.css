@@ -184,4 +184,11 @@ footer{
 
     }
 
+    .eachpost{
+        margin: 0;
+        .morearticles{
+            flex-direction: column;
+        }
+    }
+
 }
