@@ -96,17 +96,19 @@ def get_suggested_posts(current_id):
     counter=0
 
     last_chosen_id = []
-    while counter<3:
-        chosen_id = random.choice(id_list)
-        repeated =  exist_in_list(last_chosen_id, chosen_id)
+    if (total_posts>5):
+        while counter<3:
+            chosen_id = random.choice(id_list)
+            repeated =  exist_in_list(last_chosen_id, chosen_id)
 
-        if(chosen_id != current_id and repeated==False):
-            last_chosen_id.append(chosen_id) 
-            selected_post = get_post_by_id(chosen_id)
-            suggested_posts.append(selected_post)
-            counter = counter + 1
+            if(chosen_id != current_id and repeated==False):
+                last_chosen_id.append(chosen_id) 
+                selected_post = get_post_by_id(chosen_id)
+                suggested_posts.append(selected_post)
+                counter = counter + 1
+        return suggested_posts
+    return 0
     
-    return suggested_posts
 
 
 
