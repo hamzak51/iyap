@@ -122,10 +122,7 @@ main{
 .all_posts{
     display: flex; flex-wrap: wrap; gap: 1em;
     .posthome{
-        /* display: flex;   */
-        /* flex: 1 1 calc(33.333% - 1em); */
         flex: 0 0 32%;
-        /* border: solid 1px black; */
         img{object-fit: contain; max-width: 100%; border-radius: 10px}
         p{padding-right: 1rem; padding-left: 1rem; font-size: 14px;}
         a:hover{cursor: pointer; opacity: 80%;}

@@ -17,7 +17,8 @@ app = Flask(__name__)
 
 ckeditor = CKEditor(app)
 app.secret_key = os.getenv("secret_key")
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root@localhost/yap"
+# app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root@localhost/yap"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")   # environment variable DATABASE_URL (auto-provided if you add a PostgreSQL instance)
 db = SQLAlchemy(app)
 
 

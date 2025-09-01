@@ -27,7 +27,7 @@
             <div class="suggested">
                 <a href="{{ url_for('post', post_id=suggestedpost.sno) }}"><img src="{{suggestedpost.picture_path}}" alt=""></a>
                 <h1 style="margin-bottom: 0; font-weight: 700;"><a href="{{ url_for('post', post_id=suggestedpost.sno) }}">{{suggestedpost.title}}</a></h1>
-                <p style="margin-bottom: 0; font-size: 20px; font-weight: bold;">{{suggestedpost.tagline}}</p>
+                <p style="margin-bottom: 0; font-size: 20px;">{{suggestedpost.tagline}}</p>
                 <p>Hamza Khan <span>.</span><span> {{suggestedpost.date}}</span></p>
             </div>
         {% endfor %}
