@@ -9,7 +9,6 @@ import os
 from dotenv import load_dotenv  # env modules
 
 from flask_sqlalchemy import SQLAlchemy # db modules
-from models import db
 
 load_dotenv()
 
