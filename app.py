@@ -9,6 +9,7 @@ import os
 from dotenv import load_dotenv  # env modules
 
 from flask_sqlalchemy import SQLAlchemy # db modules
+from models import db
 
 load_dotenv()
 
@@ -20,7 +21,8 @@ app.secret_key = os.getenv("secret_key")
 # app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root@localhost/yap"
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")   # environment variable DATABASE_URL (auto-provided if you add a PostgreSQL instance)
 db = SQLAlchemy(app)
-
+with app.app_context():
+    db.create_all()
 
 class blogs(db.Model):
     sno = db.Column(db.Integer, primary_key=True)
